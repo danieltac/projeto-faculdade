@@ -18,7 +18,7 @@
 <div class="middle">
       <div id="login">
 
-        <form action="/faculdade/conexao/login.php" method="POST">
+        <form action="/faculdade/conexao/login.php" method="POST" autocomplete="off">
 
           <fieldset class="clearfix">
 

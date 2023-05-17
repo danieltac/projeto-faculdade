@@ -37,42 +37,44 @@ if (isset($_SESSION['id']) && isset($_SESSION['nome'])) {
                     </tr>
                 </thead>
                 <tbody>
-                    <?php
+                <?php
                     require "../config.php";
-//                     $id = $_SESSION['id'];
-//                     $nome = $_SESSION['nome'];
-//
-//                     $sql = " SELECT curso FROM professor WHERE nome = $nome";
-//                     $result = mysqli_query($conn, $sql);
-                    
-//                     $curso = $row["curso"];
-                    
-//                     //Leitura de todas as colunas da tabela
-//                     $sql_a = " SELECT curso FROM aluno WHERE curso = $curso";
-//                     $result = $conn->query($sql_a);
-//
-//                     #$result = mysqli_query($conn, "SELECT curso FROM professor");
-                    
-                    // $curso = mysqli_real_escape_string($conn, $_SESSION['curso']);
-                    // $sql = "SELECT curso FROM professor"
-                    // $result = mysqli_query($conn, "SELECT curso FROM aluno WHERE curso = $curso");
-                    // $result = $conn->query($sql);
-                    // if (!$result) {
-                    //     die("Query inválida: " . $conn->error);
-                    // }
-                    
-                    // $row = $result->fetch_assoc();
-                    
-                    echo "
-                    <tr>
-                        <td>$row[nome]</td>
-                        <td>$row[turno]</td>
-                        <td>
-                        <a href='/faculdade/professor/edit-nota.php?id=$row[id]' class='btn btn-primary'>Atribuir notas</a>
-                        </td>
-                    </tr>
-                    ";
+                     $id = $_SESSION['id'];
+                     $nome = $_SESSION['nome'];
 
+                     $sql = " SELECT curso FROM professor WHERE nome = '$nome'";
+                     $result = mysqli_query($conn, $sql);
+                     $row = $result->fetch_assoc();
+                     $curso = $row["curso"];
+                    
+                     //Leitura de todas as colunas da tabela
+                     $sql_a = "SELECT curso FROM aluno WHERE curso = '$curso'";
+                     $result = $conn->query($sql_a);
+
+
+                     
+                     $sql = "SELECT curso FROM professor";
+                     $result = mysqli_query($conn, "SELECT * FROM aluno WHERE curso = '$curso'");
+                     
+                     if (!$result) {
+                         die("Query inválida: " . $conn->error);
+                     }
+                    
+                    while($row = $result->fetch_assoc()){
+                        $nome = $row['nome'];
+                        $turno = $row['turno'];
+                        $id = $row['id'];
+                        echo "
+                        <tr>
+                            <td>$nome</td>
+                            <td>$turno</td>
+                            <td>
+                            <a href='/faculdade/professor/edit-nota.php?id=$id' class='btn btn-primary'>Atribuir notas</a>
+                            </td>
+                        </tr>
+                        ";
+                    }
+                    
                     ?>
 
                 </tbody>

@@ -85,7 +85,7 @@
             ?>
 
 
-            <form action="" method="POST">
+            <form action="" method="POST" autocomplete="off">
                 <div class="row mb-3">
                     <label class="col-sm-3 col-form-label">Nome</label>
                     <div class="col-sm-6">

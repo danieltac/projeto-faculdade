@@ -10,11 +10,15 @@
     $error = '';
     $certo = '';
 
-
+        //Função do botão "Voltar";
+    if(isset($_POST['voltar'])){
+        header("location: /faculdade/professor/index-professor.php");
+        exit;
+    }
     if ($_SERVER['REQUEST_METHOD'] == 'GET'){
         // Se o usuário não existe, redirecionar página para o index.
         if (!isset($_GET["id"])){
-            header("location: /faculdade/index-adm.php");
+            header("location: /faculdade/professor/index-professor.php");
             exit;
         }
 
@@ -22,13 +26,16 @@
         //Leitura dos dados do cliente selecionado pelo ID no banco de dados.
         $sql = "SELECT * FROM aluno WHERE id=$id";
         $result = $conn->query($sql);
+        
         $row = $result->fetch_assoc();
+
 
         if (!$row) {
             header("location: /faculdade/professor/index-professor.php");
             exit;
         }
-
+        
+        $id = $row["id"];
         $nome = $row["nome"];
         $avp1 = $row["avp1"];
         $avp2 = $row["avp2"];
@@ -39,8 +46,15 @@
         $id = $_POST["id"];
         $avp1 = $_POST["avp1"];
         $avp2 = $_POST["avp2"];
-        $avf = $_POST["avf"];
-        $med = $_POST["med"];
+        $med = ($avp1 + $avp2) / 2;
+
+        if ($med < 7){
+            $avf = "Sim";
+        }
+        else {
+            $avf = "Não";
+        }
+
 
         do {
             //Verificação se não há algum input vazio.
@@ -49,7 +63,7 @@
                 break;
             }
             //Atualiza os dados recebidos no banco de dados
-            $sql = "UPDATE aluno " . "SET avp1 = '$avp1', avp2 = '$avp2', avf = '$avf', med = '$med' " . "WHERE id = '$id'";
+            $sql = "UPDATE aluno SET avp1 = $avp1, avp2 = $avp2, med = $med WHERE id = $id";
 
             $result = $conn->query($sql);
             //Verifica se a query executou corretamente e se tiver algum erro, ele será exibido na tela.
@@ -63,11 +77,7 @@
 
         } while (false);
     }
-    //Função do botão "Voltar";
-    if(isset($_POST['voltar'])){
-        header("location: /faculdade/professor/index-professor.php");
-        exit;
-    }
+
 ?>
 
 <!DOCTYPE html>
@@ -100,40 +110,25 @@
             ?>
 
 
-            <form action="" method="POST">
+            <form action="" method="POST" autocomplete="off">
                 <input type="hidden" name="id" value="<?php echo $id ?>">
                 <div class="row mb-3">
-                    <label class="col-sm-3 col-form-label">Nome</label>
+                    <label class="col-sm-3 col-form-label">Avaliação 1</label>
                     <div class="col-sm-6">
-                        <input type="text" name="nome" class="form-control" value="<?php echo $nome ?>">
+                        <input type="number" name="avp1" class="form-control" placeholder="<?php echo "A nota atual é ". $avp1 ?>">
                     </div>
                 </div>
 
                 <div class="row mb-3">
-                    <label class="col-sm-3 col-form-label">Curso</label>
+                    <label class="col-sm-3 col-form-label">Avaliação 2</label>
                     <div class="col-sm-6">
-                        <select name="curso" id="" class="form-control">
-                            <option value="null">Selecione o Curso</option>
-                            <option value="Análise e Desenvolvimento de Sistemas">Análise e Desenvolvimento de Sistemas</option>
-                            <option value="Sistemas de Informações">Sistemas de Informações</option>
-                            <option value="Engenharia">Engenharia</option>
-                            <option value="Matemática">Matemática</option>
-                        </select>
+                        <input type="number" name="avp2" class="form-control" placeholder="<?php echo "A nota atual é ". $avp2 ?>">
                     </div>
                 </div>
 
                 <div class="row mb-3">
-                    <label class="col-sm-3 col-form-label">Turno</label>
-                    <div class="col-sm-6">
-                        <select name="turno" id="" class="form-control">
-                            <option value="null">Selecione o Turno</option>
-                            <option value="Manhã">Manhã</option>
-                            <option value="Tarde">Tarde</option>
-                            <option value="Noite">Noite</option>
-                        </select>
-                    </div>
+                    <label class="col-sm-3 col-form-label"><?php echo 'Média = '.$med; ?></label>
                 </div>
-
 
                 <?php
                     if (!empty($certo)){
@@ -153,7 +148,7 @@
 
                 <div class="row mb-3">
                     <div class="offset-sm-3 col-sm-3 d-grid">
-                        <button type="submit" name="salvar_aluno" class="btn btn-primary">Cadastrar</button>
+                        <button type="submit" name="salvar_aluno" class="btn btn-primary">Confirmar</button>
                     </div>
                     <div class="col-sm-3 d-grid">
                         <button name="voltar" type="submit" class="btn btn-primary">Cancelar</button>
