@@ -24,6 +24,7 @@
         $result = $conn->query($sql);
         $row = $result->fetch_assoc();
 
+        //Verifica se a tabela não existe, caso não exista, o usuário retorna para o index.
         if (!$row) {
             header("location: /faculdade/index-adm.php");
             exit;
@@ -34,6 +35,7 @@
         $turno = $row["turno"];
     }
     else {
+        //Dados recebidos do formulário de edit do aluno.
         $id = $_POST["id"];
         $nome = $_POST["nome"];
         $curso = $_POST["curso"];
@@ -91,7 +93,7 @@
                         <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
                     </div
                     ";
-                    header( "Refresh:3; url=edit.php?id=$id");
+                    header( "Refresh:3; url=edit-aluno.php?id=$id");
                 }
             ?>
 

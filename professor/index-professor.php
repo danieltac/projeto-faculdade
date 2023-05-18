@@ -1,7 +1,14 @@
 <?php
 
 session_start();
+require "../config.php";
+$id = $_SESSION['id'];
+$nome = $_SESSION['nome'];
 
+$sql = " SELECT curso FROM professor WHERE nome = '$nome'";
+$result = mysqli_query($conn, $sql);
+$row = $result->fetch_assoc();
+$curso = $row["curso"];
 if (isset($_SESSION['id']) && isset($_SESSION['nome'])) {
 ?>
 
@@ -27,7 +34,7 @@ if (isset($_SESSION['id']) && isset($_SESSION['nome'])) {
                 <h2>Olá, <?php echo $_SESSION['nome'];?></h2>
                 <a href="/faculdade/conexao/logout.php">Sair</a>
             </div>
-            <h3>Alunos no seu Curso</h3>
+            <h3>Alunos no seu Curso: <?php echo "$curso" ?></h3>
             <table class="table">
                 <thead>
                     <tr>
@@ -42,10 +49,7 @@ if (isset($_SESSION['id']) && isset($_SESSION['nome'])) {
                      $id = $_SESSION['id'];
                      $nome = $_SESSION['nome'];
 
-                     $sql = " SELECT curso FROM professor WHERE nome = '$nome'";
-                     $result = mysqli_query($conn, $sql);
-                     $row = $result->fetch_assoc();
-                     $curso = $row["curso"];
+
                     
                      //Leitura de todas as colunas da tabela
                      $sql_a = "SELECT curso FROM aluno WHERE curso = '$curso'";

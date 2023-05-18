@@ -35,7 +35,6 @@ if (isset($_SESSION['id']) && isset($_SESSION['nome'])) {
                         <th>Turno</th>
                         <th>AVP1</th>
                         <th>AVP2</th>
-                        <th>AVF</th>
                         <th>MÉDIA FINAL</th>
                     </tr>
                 </thead>
@@ -62,7 +61,6 @@ if (isset($_SESSION['id']) && isset($_SESSION['nome'])) {
                         <td>$row[avp1]</td>
                         <td>$row[avp2]</td>
                         <td>$row[med]</td>
-                        <td>$row[avf]</td>
                     </tr>
                     ";
 

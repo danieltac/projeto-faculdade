@@ -15,7 +15,6 @@
         $tipo = 0;
         $avp1 = "Sem nota";
         $avp2 = "Sem nota";
-        $avf = "Sem nota";
         $med = 0;
 
         do {
