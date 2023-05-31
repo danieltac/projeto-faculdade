@@ -48,8 +48,8 @@
                         <td>$row[curso]</td>
                         <td>$row[turno]</td>
                         <td>
-                            <a href='/faculdade/aluno/edit-aluno.php?id=$row[id]' class='btn btn-primary'>Editar</a>
-                            <a href='/faculdade/aluno/delete-aluno.php?id=$row[id]' class='btn btn-primary'>Excluir</a>
+                            <a href='/projeto-faculdade/aluno/edit-aluno.php?id=$row[id]' class='btn btn-primary'>Editar</a>
+                            <a href='/projeto-faculdade/aluno/delete-aluno.php?id=$row[id]' class='btn btn-primary'>Excluir</a>
                         </td>
                     </tr>
                     ";
@@ -95,8 +95,8 @@
                     <td>$row[curso]</td>
                     <td>$row[turno]</td>
                     <td>
-                        <a href='/faculdade/professor/edit-professor.php?id=$row[id]' class='btn btn-primary'>Editar</a>
-                        <a href='/faculdade/professor/delete-professor.php?id=$row[id]' class='btn btn-primary'>Excluir</a>
+                        <a href='/projeto-faculdade/professor/edit-professor.php?id=$row[id]' class='btn btn-primary'>Editar</a>
+                        <a href='professor/delete-professor.php?id=$row[id]' class='btn btn-primary'>Excluir</a>
                     </td>
                 </tr>
                 ";

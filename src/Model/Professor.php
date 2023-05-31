@@ -11,7 +11,7 @@ class Professor{
     {
         $this -> nome = $nome;
         $this -> curso = $curso;
-        $this -> turno = $curso;
+        $this -> turno = $turno;
         $this -> tipo = $tipo;
     }
 

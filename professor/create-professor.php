@@ -2,29 +2,22 @@
 require "../config.php";
 require_once "../src/model/Professor.php";
 
-    
-
-    $nome = '';
-    $curso = '';
-    $turno = '';
-    $error = '';
-    $certo = '';
 
     if(isset($_POST['salvar_professor'])){
-        $nome = $_POST['nome'];
-        $curso = $_POST['curso'];
-        $turno = $_POST['turno'];
-        $tipo = 1;
-
         do {
             //Se algum dos campos estiver vazio, exibir mensagem de erro no HTML(L-70) e recarregar pag.
-            if (empty($nome) || $curso == "null" || $turno == "null"){
+            if (empty($_POST['nome']) || $_POST['curso'] == "null" || $_POST['turno'] == "null"){
                 $error = "É necessário preencher todos os campos!";
                 break;
             }
 
             // Adiciona os dados do professor no Banco de Dados
-            $professor = new Professor($nome,$curso,$turno,$tipo);
+            $professor = new Professor(
+                $_POST['nome'],
+                $_POST['curso'],
+                $_POST['turno'],
+                1
+            );
             $query_run = $repositorioProfessor -> createProfessor($professor);
 
             //Verifica se a query executou corretamente, caso não irá exibir o erro na tela.
@@ -32,12 +25,6 @@ require_once "../src/model/Professor.php";
                 $error = "Invalid query: " . $conn->error;
                 break;
             }
-
-            $nome = '';
-            $curso = '';
-            $turno = '';
-
-            $certo = "Professor cadastrado com sucesso!";
 
             header("location: /projeto-faculdade/index-adm.php");
             exit;
@@ -87,7 +74,7 @@ require_once "../src/model/Professor.php";
                 <div class="row mb-3">
                     <label class="col-sm-3 col-form-label">Nome completo</label>
                     <div class="col-sm-6">
-                        <input type="text" name="nome" class="form-control" value="<?php echo $nome ?>">
+                        <input type="text" name="nome" class="form-control">
                     </div>
                 </div>
 

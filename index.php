@@ -18,7 +18,7 @@
       <div class="middle">
         <div id="login">
 
-          <form action="/faculdade/conexao/login.php" method="POST" autocomplete="off">
+          <form action="/projeto-faculdade/conexao/login.php" method="POST" autocomplete="off">
 
             <fieldset class="clearfix">
 
@@ -38,7 +38,7 @@
 
         </div> <!-- end login -->
         <div class="logo">
-          <img src="/faculdade/foto.png" alt="">
+          <img src="/projeto-faculdade/foto.png" alt="">
 
           <div class="clearfix"></div>
         </div>

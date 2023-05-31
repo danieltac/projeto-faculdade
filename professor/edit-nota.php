@@ -12,7 +12,7 @@
 
         //Função do botão "Voltar";
     if(isset($_POST['voltar'])){
-        header("location: /faculdade/professor/index-professor.php");
+        header("location: /projeto-faculdade/professor/index-professor.php");
         exit;
     }
     if ($_SERVER['REQUEST_METHOD'] == 'GET'){
@@ -31,7 +31,7 @@
 
 
         if (!$row) {
-            header("location: /faculdade/professor/index-professor.php");
+            header("location: /projeto-faculdade/professor/index-professor.php");
             exit;
         }
         

@@ -1,11 +1,10 @@
 <?php
-
     require "../config.php";
+    require_once "../src/model/Professor.php";
     $id = '';
     $nome = '';
     $curso = '';
     $turno = '';
-
     $error = '';
     $certo = '';
 
@@ -18,50 +17,31 @@
         }
 
         $id = $_GET["id"];
-        //Leitura dos dados do cliente selecionado pelo ID no banco de dados.
-        $sql = "SELECT * FROM professor WHERE id=$id";
-        $result = $conn->query($sql);
-        $row = $result->fetch_assoc();
-
-        if (!$row) {
-            header("location: /faculdade/index-adm.php");
-            exit;
-        }
-
-        $nome = $row["nome"];
-        $curso = $row["curso"];
-        $turno = $row["turno"];
+        $professor = $repositorioProfessor -> getProfessor($id);
     }
     else {
-        $id = $_POST["id"];
-        $nome = $_POST["nome"];
-        $curso = $_POST["curso"];
-        $turno = $_POST["turno"];
-
         do {
+            $id = $_POST["id"];
             //Verificação se não há algum input vazio.
-            if (empty($id) || empty($nome) || $curso == "null" || $turno == "null"){
+            if (empty($id) || empty($_POST["nome"]) || $_POST["curso"] == "null" || $_POST["turno"] == "null"){
                 $error = "É necessário preencher todos os campos!";
                 break;
             }
-            //Atualiza os dados recebidos no banco de dados
-            $sql = "UPDATE professor " . "SET nome = '$nome', curso = '$curso', turno = '$turno' " . "WHERE id = '$id'";
+            
+            $professor = new Professor(
+                $_POST["nome"],
+                $_POST["curso"],
+                $_POST["turno"],
+                1
+            );
 
-            $result = $conn->query($sql);
-            //Verifica se a query executou corretamente e se tiver algum erro, ele será exibido na tela.
-            if (!$result){
-                $error = "Invalid query: " . $conn->error;
-                break;
-            }
-
-            header("location: /faculdade/index-adm.php");
-            exit;
+            $repositorioProfessor->editarProfessor($professor,$id);
 
         } while (false);
     }
     //Função do botão "Voltar";
     if(isset($_POST['voltar'])){
-        header("location: /faculdade/index-adm.php");
+        header("location: /projeto-faculdade/index-adm.php");
         exit;
     }
 ?>
@@ -80,7 +60,7 @@
     <body>
         <div class="container my-5">
 
-            <?php echo "<h2>Editar Professor: $nome</h2>"?>
+            <?php echo "<h2>Editar Professor: {$professor->getNome()}</h2>"?>
 
 
             <?php
@@ -101,15 +81,15 @@
                 <div class="row mb-3">
                     <label class="col-sm-3 col-form-label">Nome</label>
                     <div class="col-sm-6">
-                        <input type="text" name="nome" class="form-control" value="<?php echo $nome ?>">
+                        <input type="text" name="nome" class="form-control" value="<?php echo $professor->getNome(); ?>" require>
                     </div>
                 </div>
 
                 <div class="row mb-3">
                     <label class="col-sm-3 col-form-label">Curso</label>
                     <div class="col-sm-6">
-                        <select name="curso" id="" class="form-control">
-                            <option value="null">Selecione o Curso</option>
+                        <select name="curso" id="" class="form-control" require>
+                            <option value="<?php echo $professor->getCurso(); ?>"><?php  echo $professor->getCurso(); ?></option>
                             <option value="Análise e Desenvolvimento de Sistemas">Análise e Desenvolvimento de Sistemas</option>
                             <option value="Sistemas de Informações">Sistemas de Informações</option>
                             <option value="Engenharia">Engenharia</option>
@@ -122,7 +102,7 @@
                     <label class="col-sm-3 col-form-label">Turno</label>
                     <div class="col-sm-6">
                         <select name="turno" id="" class="form-control">
-                            <option value="null">Selecione o Turno</option>
+                            <option value="<?php echo $professor->getTurno(); ?>"><?php echo $professor->getTurno(); ?></option>
                             <option value="Manhã">Manhã</option>
                             <option value="Tarde">Tarde</option>
                             <option value="Noite">Noite</option>
