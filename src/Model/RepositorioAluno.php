@@ -1,6 +1,9 @@
 <?php
+    namespace src\Model;
 
     require_once "Aluno.php";
+    use src\model\Aluno;
+    use mysqli;
 
     class RepositorioAluno{
 
@@ -9,6 +12,21 @@
         public function __construct(mysqli $conexao)
         {
             $this->conexao = $conexao;
+        }
+
+        public function todosAlunos(){
+            $listaAlunos = [];
+            $sqlConsult = "SELECT * FROM aluno";
+            $result = $this->conexao->query($sqlConsult);
+
+            if($result->num_rows > 0){
+                while($row = $result->fetch_assoc()){
+                    $listaAlunos[] = $row;
+                }
+            }
+
+            return $listaAlunos;
+
         }
 
         public function createAluno(Aluno $aluno){
@@ -20,6 +38,20 @@
             }
 
             return $sucesso;
+        }
+
+        public function readAluno($nome, $id){
+            if($id !== null){
+                $sqlConsult = "SELECT * FROM aluno WHERE nome = '$nome' AND id = $id";
+                $result = $this->conexao->query($sqlConsult);
+                if($result->num_rows === 1){
+                    $dados = $result->fetch_assoc();
+                }
+                else{
+                    return false;
+                }
+                return $dados;
+            }
         }
 
         public function deleteAlunoId(int $id){

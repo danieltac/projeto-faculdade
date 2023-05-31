@@ -25,7 +25,7 @@ if (isset($_SESSION['id']) && isset($_SESSION['nome'])) {
 
             <div class="d-flex justify-content-between">
                 <h2>Olá, <?php echo $_SESSION['nome'];?></h2>
-                <a href="/faculdade/conexao/logout.php">Sair</a>
+                <a href="/projeto-faculdade/conexao/logout.php">Sair</a>
             </div>
             <h3>Dados do curso:</h3>
             <table class="table">
@@ -42,25 +42,17 @@ if (isset($_SESSION['id']) && isset($_SESSION['nome'])) {
                     <?php
                     require "../config.php";
                     $id = $_SESSION['id'];
+                    $nome = $_SESSION['nome'];
 
-                    //Leitura da coluna da tabela que seja igual ao id do aluno logado;
-                    $sql = "SELECT * FROM aluno WHERE id=$id";
-                    $result = $conn->query($sql);
-
-                    if (!$result) {
-                        die("Query inválida: " . $conn->error);
-                    }
-
-                    //Disponibilização do resultado da busca na tela
-                    $row = $result->fetch_assoc();
+                    $dados = $repositorioAluno->readAluno($nome, $id);
 
                     echo "
                     <tr>
-                        <td>$row[curso]</td>
-                        <td>$row[turno]</td>
-                        <td>$row[avp1]</td>
-                        <td>$row[avp2]</td>
-                        <td>$row[med]</td>
+                        <td>$dados[curso]</td>
+                        <td>$dados[turno]</td>
+                        <td>$dados[avp1]</td>
+                        <td>$dados[avp2]</td>
+                        <td>$dados[med]</td>
                     </tr>
                     ";
 
