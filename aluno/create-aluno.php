@@ -1,6 +1,7 @@
 <?php
 
     require "../config.php";
+    require "../src/Model/Aluno.php";
 
     $nome = '';
     $curso = '';
@@ -24,23 +25,10 @@
                 break;
             }
 
-            // Adiciona os dados do aluno no Banco de Dados
-            $query = "INSERT INTO aluno (nome, curso, turno, tipo, avp1, avp2, avf, med) VALUES ('$nome', '$curso', '$turno', '$tipo', '$avp1', '$avp2', '$avf', '$med')";
-            $query_run = mysqli_query($conn, $query);
+            $aluno = new Aluno($nome, $curso, $turno, $conn);
+            $aluno->createAluno();
 
-            //Verifica se a query executou corretamente, caso não irá exibir o erro na tela.
-            if (!$query_run){
-                $error = "Invalid query: " . $conn->error;
-                break;
-            }
-
-            $nome = '';
-            $curso = '';
-            $turno = '';
-
-            $certo = "Aluno cadastrado com sucesso!";
-
-            header("location: /faculdade/index-adm.php");
+            header("location: /projeto-faculdade/index-adm.php");
             exit;
 
         } while (false);
