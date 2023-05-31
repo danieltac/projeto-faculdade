@@ -97,4 +97,8 @@
         public function setMed(string $med){
             $this->med = $med;
         }
+
+        public function calcMedia(){
+            
+        }
     }
