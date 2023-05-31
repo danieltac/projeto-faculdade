@@ -1,12 +1,12 @@
 <?php
-
-    require_once "Aluno.php";
+namespace src\model;
+use src\model\Aluno;
 
     class RepositorioAluno{
 
-        private mysqli $conexao;
+        private $conexao;
 
-        public function __construct(mysqli $conexao)
+        public function __construct($conexao)
         {
             $this->conexao = $conexao;
         }

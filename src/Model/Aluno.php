@@ -1,5 +1,5 @@
 <?php
-
+    namespace src\model;
 
     class Aluno{
 

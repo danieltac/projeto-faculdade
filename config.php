@@ -1,6 +1,9 @@
 <?php
 
     require_once "src/Model/RepositorioAluno.php";
+    require_once "src/model/RepositorioProfessor.php";
+    use src\model\RepositorioAluno;
+    use src\model\RepositorioProfessor;
 
     $server = "localhost";
     $user = "root";
@@ -16,4 +19,5 @@
     }
     
     $repositorioAluno = new RepositorioAluno($conn);
+    $repositorioProfessor = new RepositorioProfessor($conn);
 ?>

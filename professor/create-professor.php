@@ -1,5 +1,8 @@
 <?php
 
+require_once("../src/model/Professor.php");
+use src\model\Professor;
+
     require "../config.php";
 
     $nome = '';
@@ -22,8 +25,8 @@
             }
 
             // Adiciona os dados do professor no Banco de Dados
-            $query = "INSERT INTO professor (nome, curso, turno, tipo) VALUES ('$nome', '$curso', '$turno', '$tipo')";
-            $query_run = mysqli_query($conn, $query);
+            $professor = new Professor($nome,$curso,$turno,$tipo);
+            $query_run = $repositorioProfessor -> createProfessor($professor);
 
             //Verifica se a query executou corretamente, caso não irá exibir o erro na tela.
             if (!$query_run){
@@ -37,7 +40,7 @@
 
             $certo = "Professor cadastrado com sucesso!";
 
-            header("location: /faculdade/index-adm.php");
+            header("location: /projeto-faculdade/index-adm.php");
             exit;
 
         } while (false);
@@ -46,7 +49,7 @@
     }
     //Função do botão "Voltar";
     if(isset($_POST['voltar'])){
-        header("location: /faculdade/index-adm.php");
+        header("location: /projeto-faculdade/index-adm.php");
         exit;
     }
 ?>

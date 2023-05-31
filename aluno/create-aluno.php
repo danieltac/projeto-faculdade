@@ -1,8 +1,9 @@
 <?php
 
     require_once "../config.php";
-    require_once "../src/Model/Aluno.php";
-    require_once "../src/Model/RepositorioAluno.php";
+    use src\model\Aluno;
+    use scr\model\RepositorioAluno;
+    
 
     $nome = '';
     $curso = '';

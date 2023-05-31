@@ -63,7 +63,7 @@
     <div class="container my-5">
             
     <h2>Lista de Professores</h2>
-    <a href="/faculdade/professor/create-professor.php" class="btn btn-primary">Cadastrar Professor</a>
+    <a href="/projeto-faculdade/professor/create-professor.php" class="btn btn-primary">Cadastrar Professor</a>
     <table class="table">
         <thead>
             <tr>
