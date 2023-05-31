@@ -1,14 +1,11 @@
 <?php
-
     require "../config.php";
+
     if (isset($_GET["id"])){
         $id = $_GET["id"];
-
-        $sql = "DELETE FROM professor WHERE id=$id";
-        $conn->query($sql);
+        $repositorioProfessor->deleteProfessor($id);
     }
 
-    header("location: /faculdade/index-adm.php");
+    header("location: /projeto-faculdade/index-adm.php");
     exit;
-
 ?>

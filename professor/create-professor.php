@@ -1,29 +1,24 @@
 <?php
+require "../config.php";
+require_once "../src/model/Professor.php";
 
-    require "../config.php";
-
-    $nome = '';
-    $curso = '';
-    $turno = '';
-    $error = '';
-    $certo = '';
 
     if(isset($_POST['salvar_professor'])){
-        $nome = $_POST['nome'];
-        $curso = $_POST['curso'];
-        $turno = $_POST['turno'];
-        $tipo = 1;
-
         do {
             //Se algum dos campos estiver vazio, exibir mensagem de erro no HTML(L-70) e recarregar pag.
-            if (empty($nome) || $curso == "null" || $turno == "null"){
+            if (empty($_POST['nome']) || $_POST['curso'] == "null" || $_POST['turno'] == "null"){
                 $error = "É necessário preencher todos os campos!";
                 break;
             }
 
             // Adiciona os dados do professor no Banco de Dados
-            $query = "INSERT INTO professor (nome, curso, turno, tipo) VALUES ('$nome', '$curso', '$turno', '$tipo')";
-            $query_run = mysqli_query($conn, $query);
+            $professor = new Professor(
+                $_POST['nome'],
+                $_POST['curso'],
+                $_POST['turno'],
+                1
+            );
+            $query_run = $repositorioProfessor -> createProfessor($professor);
 
             //Verifica se a query executou corretamente, caso não irá exibir o erro na tela.
             if (!$query_run){
@@ -31,13 +26,7 @@
                 break;
             }
 
-            $nome = '';
-            $curso = '';
-            $turno = '';
-
-            $certo = "Professor cadastrado com sucesso!";
-
-            header("location: /faculdade/index-adm.php");
+            header("location: /projeto-faculdade/index-adm.php");
             exit;
 
         } while (false);
@@ -46,7 +35,7 @@
     }
     //Função do botão "Voltar";
     if(isset($_POST['voltar'])){
-        header("location: /faculdade/index-adm.php");
+        header("location: /projeto-faculdade/index-adm.php");
         exit;
     }
 ?>
@@ -85,7 +74,7 @@
                 <div class="row mb-3">
                     <label class="col-sm-3 col-form-label">Nome completo</label>
                     <div class="col-sm-6">
-                        <input type="text" name="nome" class="form-control" value="<?php echo $nome ?>">
+                        <input type="text" name="nome" class="form-control">
                     </div>
                 </div>
 
@@ -113,24 +102,6 @@
                         </select>
                     </div>
                 </div>
-
-
-                <?php
-                /*
-                    if (!empty($certo)){
-                        echo"
-                            <div class='row mb-3'>
-                                <div class='offset-sm-3 col-sm-6'>
-                                    <div class='alert alert-success alert-dismissible fade show' role='alert'>
-                                        <strong>$certo</strong>
-                                        <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
-                                    </div>
-                                </div>
-                            </div>
-                        ";
-                    }
-                */
-                ?>
 
 
                 <div class="row mb-3">

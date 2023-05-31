@@ -12,13 +12,13 @@
 
         //Função do botão "Voltar";
     if(isset($_POST['voltar'])){
-        header("location: /faculdade/professor/index-professor.php");
+        header("location: /projeto-faculdade/professor/index-professor.php");
         exit;
     }
     if ($_SERVER['REQUEST_METHOD'] == 'GET'){
         // Se o usuário não existe, redirecionar página para o index.
         if (!isset($_GET["id"])){
-            header("location: /faculdade/professor/index-professor.php");
+            header("location: /projeto-faculdade/professor/index-professor.php");
             exit;
         }
 
@@ -31,7 +31,7 @@
 
 
         if (!$row) {
-            header("location: /faculdade/professor/index-professor.php");
+            header("location: /projeto-faculdade/professor/index-professor.php");
             exit;
         }
         
@@ -72,7 +72,7 @@
                 break;
             }
 
-            header("location: /faculdade/professor/index-professor.php");
+            header("location: /projeto-faculdade/professor/index-professor.php");
             exit;
 
         } while (false);

@@ -3,8 +3,6 @@
     require_once "src/Model/RepositorioAluno.php";
     require_once "src/Model/RepositorioProfessor.php";
 
-    use mysqli;
-
     $server = "localhost";
     $user = "root";
     $pass = "";

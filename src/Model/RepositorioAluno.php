@@ -1,6 +1,5 @@
 <?php
     require_once "Aluno.php";
-    use mysqli;
 
     class RepositorioAluno{
 

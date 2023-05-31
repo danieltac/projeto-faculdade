@@ -5,7 +5,7 @@ require "../config.php";
 $id = $_SESSION['id'];
 $nome = $_SESSION['nome'];
 
-$sql = " SELECT curso FROM professor WHERE nome = '$nome'";
+$sql = " SELECT curso FROM professor WHERE id = '$id'";
 $result = mysqli_query($conn, $sql);
 $row = $result->fetch_assoc();
 $curso = $row["curso"];
@@ -32,7 +32,7 @@ if (isset($_SESSION['id']) && isset($_SESSION['nome'])) {
 
             <div class="d-flex justify-content-between">
                 <h2>Olá, <?php echo $_SESSION['nome'];?></h2>
-                <a href="/faculdade/conexao/logout.php">Sair</a>
+                <a href="/projeto-faculdade/conexao/logout.php">Sair</a>
             </div>
             <h3>Alunos no seu Curso: <?php echo "$curso" ?></h3>
             <table class="table">
@@ -73,7 +73,7 @@ if (isset($_SESSION['id']) && isset($_SESSION['nome'])) {
                             <td>$nome</td>
                             <td>$turno</td>
                             <td>
-                            <a href='/faculdade/professor/edit-nota.php?id=$id' class='btn btn-primary'>Atribuir notas</a>
+                            <a href='/projeto-faculdade/professor/edit-nota.php?id=$id' class='btn btn-primary'>Atribuir notas</a>
                             </td>
                         </tr>
                         ";
