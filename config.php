@@ -1,8 +1,7 @@
 <?php
 
-    namespace src\Model;
     require_once "src/Model/RepositorioAluno.php";
-    use src\Model\RepositorioAluno;
+    require_once "src/Model/RepositorioProfessor.php";
 
     use mysqli;
 
@@ -20,4 +19,5 @@
     }
     
     $repositorioAluno = new RepositorioAluno($conn);
+    $repositorioProfessor = new RepositorioProfessor($conn);
 ?>

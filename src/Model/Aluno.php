@@ -1,7 +1,5 @@
 <?php
 
-    namespace src\Model;
-
     class Aluno{
 
         private ?int $id;

@@ -1,8 +1,5 @@
 <?php
-    namespace src\Model;
-
     require_once "Aluno.php";
-    use src\model\Aluno;
     use mysqli;
 
     class RepositorioAluno{

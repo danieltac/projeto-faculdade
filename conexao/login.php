@@ -1,7 +1,6 @@
 <?php
 
     require "../config.php";
-    use src\Model\RepositorioAluno;
 
     session_start();
 
@@ -33,14 +32,11 @@
     }
 
     elseif (mysqli_num_rows($result_p) === 1){
-        $row = mysqli_fetch_assoc($result_p);
-        if($row['nome'] === $user && $row['id'] === $pass){
-            echo "Login efetuado com sucesso!";
-            $_SESSION['nome'] = $row['nome'];
-            $_SESSION['id'] = $row['id'];
-            header("location: /projeto-faculdade/professor/index-professor.php");
-            exit;
-        }
+        echo "Login efetuado com sucesso!";
+        $_SESSION['nome'] = $user;
+        $_SESSION['id'] = $pass;
+        header("location: /projeto-faculdade/professor/index-professor.php");
+        exit;
     }
     else {
         header("location: /projeto-faculdade/index.php");
