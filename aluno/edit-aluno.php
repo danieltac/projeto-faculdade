@@ -14,7 +14,7 @@
     if ($_SERVER['REQUEST_METHOD'] == 'GET'){
         // Se o usuário não existe, redirecionar página para o index.
         if (!isset($_GET["id"])){
-            header("location: /faculdade/index-adm.php");
+            header("location: /projeto-faculdade/index-adm.php");
             exit;
         }
 
@@ -26,7 +26,7 @@
 
         //Verifica se a tabela não existe, caso não exista, o usuário retorna para o index.
         if (!$row) {
-            header("location: /faculdade/index-adm.php");
+            header("location: /projeto-faculdade/index-adm.php");
             exit;
         }
 
@@ -47,24 +47,20 @@
                 $error = "É necessário preencher todos os campos!";
                 break;
             }
-            //Atualiza os dados recebidos no banco de dados
-            $sql = "UPDATE aluno " . "SET nome = '$nome', curso = '$curso', turno = '$turno' " . "WHERE id = '$id'";
 
-            $result = $conn->query($sql);
-            //Verifica se a query executou corretamente e se tiver algum erro, ele será exibido na tela.
-            if (!$result){
-                $error = "Invalid query: " . $conn->error;
-                break;
-            }
+            $aluno = new Aluno($id, $nome, $curso, $turno);
+            $repositorioAluno->salvarAluno($aluno);
 
-            header("location: /faculdade/index-adm.php");
+
+
+            header("location: /projeto-faculdade/index-adm.php");
             exit;
 
         } while (false);
     }
     //Função do botão "Voltar";
     if(isset($_POST['voltar'])){
-        header("location: /faculdade/index-adm.php");
+        header("location: /projeto-faculdade/index-adm.php");
         exit;
     }
 ?>

@@ -27,8 +27,8 @@
                 break;
             }
 
-            $aluno = new Aluno($nome, $curso, $turno);
-            $repositorioAluno->createAluno($aluno);
+            $aluno = new Aluno(NULL, $nome, $curso, $turno);
+            $repositorioAluno->salvarAluno($aluno);
             
 
             header("location: /projeto-faculdade/index-adm.php");

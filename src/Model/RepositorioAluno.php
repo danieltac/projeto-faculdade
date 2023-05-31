@@ -21,4 +21,27 @@
 
             return $sucesso;
         }
+
+        public function deleteAlunoId(int $id){
+            $sqlDelete = "DELETE FROM aluno WHERE id = $id";
+            $sucesso = $this->conexao->query($sqlDelete);
+
+            return $sucesso;
+        }
+
+        public function updateAluno(Aluno $aluno){
+            $sqlUpdate = "UPDATE aluno " . "SET nome = '{$aluno->getNome()}', curso = '{$aluno->getCurso()}', turno = '{$aluno->getTurno()}' " . "WHERE id = '{$aluno->getId()}'";
+            $sucesso  = $this->conexao->query($sqlUpdate);
+
+            return $sucesso;
+        }
+
+        public function salvarAluno(Aluno $aluno){
+            if($aluno->getId() === null){
+                return $this->createAluno($aluno);
+            }
+            else{
+                return $this->updateAluno($aluno);
+            }
+        }
     }
