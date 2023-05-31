@@ -4,8 +4,8 @@
     require_once "../src/Model/Aluno.php";
     require_once "../src/Model/RepositorioAluno.php";
 
-    use src\Model\Aluno;
-    use src\Model\RepositorioAluno;
+    //use src\Model\Aluno;
+    //use src\Model\RepositorioAluno;
 
     $nome = '';
     $curso = '';

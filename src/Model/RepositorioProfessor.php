@@ -1,4 +1,5 @@
 <?php
+//namespace src\Model;
 require "Professor.php";
 
 class RepositorioProfessor{

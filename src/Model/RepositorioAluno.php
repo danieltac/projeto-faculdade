@@ -1,6 +1,8 @@
 <?php
+//namespace src\Model;
     require_once "Aluno.php";
 
+    //use mysqli;
     class RepositorioAluno{
 
         private mysqli $conexao;

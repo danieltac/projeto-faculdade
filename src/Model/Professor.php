@@ -1,4 +1,5 @@
 <?php
+//namespace src\Model;
 
 class Professor{
     private string $nome;
