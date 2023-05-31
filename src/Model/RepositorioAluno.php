@@ -1,6 +1,5 @@
 <?php
-namespace src\model;
-use src\model\Aluno;
+    require "Aluno.php";
 
     class RepositorioAluno{
 

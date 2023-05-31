@@ -1,9 +1,8 @@
 <?php
+require "../config.php";
+require_once "../src/model/Professor.php";
 
-require_once("../src/model/Professor.php");
-use src\model\Professor;
-
-    require "../config.php";
+    
 
     $nome = '';
     $curso = '';

@@ -1,8 +1,5 @@
 <?php
 
-namespace src\model;
-
-
 class Professor{
     private string $nome;
     private string $curso;

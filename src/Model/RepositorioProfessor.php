@@ -1,8 +1,5 @@
 <?php
-
-namespace src\model;
-use src\model\Professor;
-
+require "Professor.php";
 
 class RepositorioProfessor{
     private $conexao;
