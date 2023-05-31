@@ -1,13 +1,15 @@
 <?php
 
-    require "../config.php";
-    require "../src/Model/Aluno.php";
+    require_once "../config.php";
+    require_once "../src/Model/Aluno.php";
+    require_once "../src/Model/RepositorioAluno.php";
 
     $nome = '';
     $curso = '';
     $turno = '';
     $error = '';
     $certo = '';
+
 
     if(isset($_POST['salvar_aluno'])){
         $nome = $_POST['nome'];
@@ -25,8 +27,9 @@
                 break;
             }
 
-            $aluno = new Aluno($nome, $curso, $turno, $conn);
-            $aluno->createAluno();
+            $aluno = new Aluno($nome, $curso, $turno);
+            $repositorioAluno->createAluno($aluno);
+            
 
             header("location: /projeto-faculdade/index-adm.php");
             exit;

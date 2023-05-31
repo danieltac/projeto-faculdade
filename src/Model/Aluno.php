@@ -12,9 +12,8 @@
         private string $avp2;
         private string $avf;
         private string $med;
-        private mysqli $conexao;
 
-        public function __construct(string $nome, string $curso, string $turno, mysqli $conexao)
+        public function __construct(string $nome, string $curso, string $turno)
         {
             $this->nome = $nome;
             $this->curso = $curso;
@@ -23,7 +22,6 @@
             $this->avp1 = "Sem Nota";
             $this->avp2 = "Sem Nota";
             $this->med = 0;
-            $this->conexao = $conexao;
         }
 
         public function getId(){
@@ -96,12 +94,5 @@
 
         public function setMed(string $med){
             $this->med = $med;
-        }
-
-        public function createAluno(){
-            $sqlInsert = "INSERT INTO aluno (nome, curso, turno, avp1, avp2, med) VALUES ('{$this->getNome()}', '{$this->getCurso()}', '{$this->getTurno()}', '{$this->getAvp1()}', '{$this->getAvp2()}', '{$this->getMed()}')";
-            $sucesso = $this->conexao->query($sqlInsert);
-
-            echo $sucesso;
         }
     }

@@ -1,5 +1,7 @@
 <?php
 
+    require_once "src/Model/RepositorioAluno.php";
+
     $server = "localhost";
     $user = "root";
     $pass = "";
@@ -13,4 +15,5 @@
         die("A conexão falhou: " . $conn->connect_error);
     }
     
+    $repositorioAluno = new RepositorioAluno($conn);
 ?>
