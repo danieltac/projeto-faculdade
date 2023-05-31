@@ -16,7 +16,7 @@
 
 
         <h2>Lista de Alunos</h2>
-        <a href="/faculdade/aluno/create-aluno.php" class="btn btn-primary">Cadastrar Aluno</a>
+        <a href="/projeto-faculdade/aluno/create-aluno.php" class="btn btn-primary">Cadastrar Aluno</a>
         <table class="table">
             <thead>
                 <tr>
