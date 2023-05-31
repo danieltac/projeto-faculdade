@@ -38,7 +38,7 @@
 
         </div> <!-- end login -->
         <div class="logo">
-          <img src="/faculdade/foto.png" alt="">
+          <img src="/projeto-faculdade/foto.png" alt="">
 
           <div class="clearfix"></div>
         </div>
