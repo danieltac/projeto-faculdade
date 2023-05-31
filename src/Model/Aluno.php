@@ -1,5 +1,6 @@
 <?php
 
+    namespace src\Model;
 
     class Aluno{
 
@@ -95,5 +96,9 @@
 
         public function setMed(string $med){
             $this->med = $med;
+        }
+
+        public function calcMedia(){
+            
         }
     }

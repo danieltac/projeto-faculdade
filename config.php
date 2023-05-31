@@ -1,6 +1,10 @@
 <?php
 
+    namespace src\Model;
     require_once "src/Model/RepositorioAluno.php";
+    use src\Model\RepositorioAluno;
+
+    use mysqli;
 
     $server = "localhost";
     $user = "root";
