@@ -4,12 +4,10 @@
     //Busca o aluno pelo ID
     if (isset($_GET["id"])){
         $id = $_GET["id"];
-        //Excluí o aluno pelo ID
-        $sql = "DELETE FROM aluno WHERE id=$id";
-        $conn->query($sql);
+        $repositorioAluno->deleteAlunoId($id);
     }
 
-    header("location: /faculdade/index-adm.php");
+    header("location: /projeto-faculdade/index-adm.php");
     exit;
 
 ?>

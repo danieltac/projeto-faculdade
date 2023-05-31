@@ -13,8 +13,9 @@
         private string $avf;
         private string $med;
 
-        public function __construct(string $nome, string $curso, string $turno)
+        public function __construct(?int $id, string $nome, string $curso, string $turno)
         {
+            $this->id = $id;
             $this->nome = $nome;
             $this->curso = $curso;
             $this->turno = $turno;
