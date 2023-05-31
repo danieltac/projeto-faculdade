@@ -7,7 +7,6 @@
     <title>Faculdade</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-
 </head>
 <body>
     
@@ -30,26 +29,20 @@
             <tbody>
                 <?php
                 require "config.php";
-                //Leitura de todas as colunas da tabela
-                $sql = "SELECT * FROM aluno";
-                $result = $conn->query($sql);
-
-                if (!$result){
-                    die("Query inválida: ". $conn->error);
-                }
+                $alunos = $repositorioAluno->todosAlunos();
 
                 //Disponibilização do resultado da busca na tela
 
-                while ($row = $result->fetch_assoc()) {
+                foreach ($alunos as $aluno) {
                     echo "
                     <tr>
-                        <td>$row[id]</td>
-                        <td>$row[nome]</td>
-                        <td>$row[curso]</td>
-                        <td>$row[turno]</td>
+                        <td>$aluno[id]</td>
+                        <td>$aluno[nome]</td>
+                        <td>$aluno[curso]</td>
+                        <td>$aluno[turno]</td>
                         <td>
-                            <a href='/projeto-faculdade/aluno/edit-aluno.php?id=$row[id]' class='btn btn-primary'>Editar</a>
-                            <a href='/projeto-faculdade/aluno/delete-aluno.php?id=$row[id]' class='btn btn-primary'>Excluir</a>
+                            <a href='/projeto-faculdade/aluno/edit-aluno.php?id=$aluno[id]' class='btn btn-primary'>Editar</a>
+                            <a href='/projeto-faculdade/aluno/delete-aluno.php?id=$aluno[id]' class='btn btn-primary'>Excluir</a>
                         </td>
                     </tr>
                     ";

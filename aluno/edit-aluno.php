@@ -1,6 +1,7 @@
 <?php
 
     require "../config.php";
+    use src\Model\Aluno;
 
     $id = '';
     $nome = '';
